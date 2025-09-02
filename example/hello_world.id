@@ -1,0 +1,4 @@
+import std: {
+  writeln("Hello, World!"):
+  writeln;
+}
