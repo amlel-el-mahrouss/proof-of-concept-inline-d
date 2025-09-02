@@ -1,4 +1,4 @@
 import std: {
-  writeln("Hello, World!"):
-  writeln;
+  writeln("Hello, World!");
+  writeln("This is InlineD");
 }

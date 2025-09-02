@@ -1,6 +1,6 @@
 import std, std.format, std.file, std.stdio, std.system, std.process;
 
-string parseDLangModule(string blob) {
+string parseInline(string blob) {
   auto app = appender!string();
 
   char delimiter = ':';
@@ -14,14 +14,18 @@ string parseDLangModule(string blob) {
 
     string after = blob[index + 1 .. $];
 
-    app.put("void main()");
+    app.put("void main(string[] argv)");
     app.put(after);
   }
 
   return app.data;
 }
 
-void main() {
-  string blob = readText("example/hello_world.id");
-  writeln(parseDLangModule(blob));
+void main(string[] argv) {
+  if (argv.length <= 1) return;
+
+  string blob = readText(argv[1]);
+
+  writeln("/// Pipe '|' this into a compiler!");
+  writeln(parseInline(blob));
 }
